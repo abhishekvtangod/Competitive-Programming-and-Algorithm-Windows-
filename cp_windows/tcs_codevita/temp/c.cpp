@@ -1,0 +1,108 @@
+/**
+ *    author:  abhishekvtangod
+ *    created: 
+**/
+// #undef _GLIBCXX_DEBUG
+// #undef _ABHI
+#include<bits/stdc++.h>
+using namespace std; 
+
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+template<class T> using oset=tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+// oset<pair<ll,ll>> indexed_set;
+
+#define mod 1000000007
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) (a*b)/gcd(a,b)
+#define bits(x) __builtin_popcountll(x)
+#define endl "\n"
+#define IOS ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+typedef long long int ll;
+
+void debug_out() { cerr << "]" << endl; }
+template <typename Head, typename... Tail>
+void debug_out(Head H, Tail... T) {
+  cerr << H << ", ";
+  debug_out(T...);
+}
+
+#ifdef _GLIBCXX_DEBUG
+#define debug(x...) cerr << "[" << #x << "]:[", debug_out(x)
+#else
+#define debug(...) 42
+#endif
+
+// struct HASH{
+//   size_t operator()(const pair<int,int>&x)const{
+//     return hash<long long>()(((long long)x.first)^(((long long)x.second)<<32));
+//   }
+// };
+
+void solve(){
+
+    int n, k;
+    cin >> n >> k;
+    // vector<int> v(n);
+    multiset <ll>  s;
+    for(int i =0;i<n;i++){
+        // cin >> v[i];
+        int t;
+        cin >> t;
+        s.insert(t);
+    }
+
+    // while(m){
+    //     m--;
+    //     auto idx=v.begin();
+    //     int mx=v[0];
+    //     auto it = v.begin();
+    //     for(;it!=v.end(); it++){
+    //         if(mx<(*it)){
+    //             mx = (*it);
+    //             idx = it;
+    //         }
+    //     }
+    //     // v.erase(idx);
+    //     // mx/=2;
+    //     (*it) = (*it)/2;
+    //     // v.push_back(mx);
+    // }
+    while(k){
+        k--;
+        ll mx = *s.rbegin();
+        // cout << mx << endl;
+        // s.erase(mx);
+        s.erase((--s.end()));
+
+        s.insert(ceil(mx/2));
+    }
+    ll ans = 0;
+    for(auto &u:s){
+    	cout << u << " ";
+        ans+=u;
+    }
+    // cout << endl;
+    cout << ans ;
+
+
+
+}
+
+int main()
+{   
+	IOS;
+
+ 	#ifdef _ABHI
+		freopen("C:\\Users\\Thangod\\Desktop\\zAbhi\\input.txt", "r", stdin);
+		freopen("C:\\Users\\Thangod\\Desktop\\zAbhi\\output.txt", "w", stdout);
+	#endif 
+
+	// ll t;cin>>t;
+	// while(t--){
+		solve();
+	// }
+
+    return 0;
+}
